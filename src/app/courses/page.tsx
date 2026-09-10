@@ -1,69 +1,19 @@
-type Course = {
-  id: number;
-  code: string;
-  title: string;
-  credits: number;
-  isOpen: boolean;
-};
+import CourseCard from "@/components/CourseCard";
+import { courses } from "@/data/coursesdata";
+import Buttoncomponent from "@/components/ButtonComponent";
+import CounterDemo from "@/components/CounterDemo";
+import type { Metadata } from "next";
+import CourseExplorer from "@/components/CourseExplorer";
 
-const courses: Course[] = [
-  {
-    id: 1,
-    code: "10301231",
-    title: "Web Technology",
-    credits: 3,
-    isOpen: true,
-  },
-  {
-    id: 2,
-    code: "10301232",
-    title: "Database Systems",
-    credits: 3,
-    isOpen: false,
-  },
-  {
-    id: 3,
-    code: "10301232",
-    title: "Computer Networks",
-    credits: 3,
-    isOpen: true,
-  },
-  {
-    id: 4,
-    code: "10301232",
-    title: "Operating Systems",
-    credits: 3,
-    isOpen: true,
-  },
-];
-
-const topics: string[] = [
-  "HTML",
-  "CSS",
-  "TypeScript",
-  "Next.js",
-];
-
-export default function CoursesPage() {
-  return (
-    <main className="page">
-      <h1>รายวิชาทั้งหมด</h1>
-      <section className="courseGrid">
-        {courses.map((course) => (
-          <article key={course.id} className="courseCard">
-            <h2>{course.title}</h2>
-            <p>รหัสวิชา: {course.code}</p>
-            <p>{course.credits} หน่วยกิต</p>
-            <p>{course.isOpen ? "เปิดลงทะเบียน" : "ปิดลงทะเบียน"}</p>
-          </article>
-        ))}
-      </section>
-      <h2>หัวข้อที่เรียน</h2>
-      <ul>
-        {topics.map((topic) => (
-          <li key={topic}>{topic}</li>
-        ))}
-      </ul>
-    </main>
+export const metadata: Metadata = { 
+  title: "รายวิชาทั้งหมด", 
+}; 
+ 
+export default function CoursesPage() { 
+  return ( 
+    <div className="page h1"> 
+     <h1>รายวิชาทั้งหมด</h1> 
+     <CourseExplorer courses={courses} /> 
+     </div> 
   );
 }

@@ -1,4 +1,4 @@
-import BandCard from "@/components/BandCard";
+import BandExplorer from "@/components/BandExplorer";
 import { favoriteBands } from "@/data/bands";
 
 export default function BandsPage() {
@@ -7,10 +7,9 @@ export default function BandsPage() {
       <section className="heroSection">
         <h1>วงดนตรีที่ชื่นชอบ</h1>
       </section>
-      <section className="bandGrid" aria-label="รายการวงดนตรีที่ชื่นชอบ">
-        {favoriteBands.map((band) => (
-          <BandCard key={band.id} band={band} />
-        ))}
+
+      <section>
+        <BandExplorer bands={favoriteBands} />
       </section>
     </main>
   );

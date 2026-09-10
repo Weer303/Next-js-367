@@ -3,9 +3,13 @@ import type { Band } from "@/types/band";
 
 type BandCardProps = {
   band: Band;
+  isFollowed: boolean;
+  likes: number;
+  onToggleFollow: () => void;
+  onLike: () => void;
 };
 
-export default function BandCard({ band }: BandCardProps) {
+export default function BandCard({band, isFollowed, likes, onToggleFollow, onLike,}: BandCardProps) {
   return (
     <article className="bandCard">
       <div className="bandImageWrap">
@@ -23,7 +27,27 @@ export default function BandCard({ band }: BandCardProps) {
       <div className="bandContent">
         <p className="bandGenre">{band.genre}</p>
         <h2>{band.name}</h2>
-        {band.description ? <p className="bandDescription">{band.description}</p> : null}
+        {band.description && <p className="bandDescription">{band.description}</p>}
+
+        <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
+          <button
+            type="button"
+            className="favButton"
+            onClick={onToggleFollow}
+            aria-pressed={isFollowed}
+          >
+            {isFollowed ? "กำลังติดตาม" : "+ ติดตาม"}
+          </button>
+
+          <button
+            type="button"
+            className="favButton"
+            onClick={onLike}
+            style={{ width: "auto", whiteSpace: "nowrap" }}
+          >
+            {likes}
+          </button>
+        </div>
 
         <h3>สมาชิก</h3>
         <ul className="memberList">
